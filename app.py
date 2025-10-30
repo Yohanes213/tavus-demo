@@ -26,9 +26,7 @@ if st.button("Create and Join Chat"):
     }
     persona_response = requests.post("https://tavusapi.com/v2/personas", json=persona_payload, headers=headers)
     persona_data = persona_response.json()
-    st.write(persona_data)
     persona_id = persona_data.get("persona_id")
-    st.write(persona_id)
 
     if persona_id:
         # 2. Create the Conversation
@@ -39,9 +37,7 @@ if st.button("Create and Join Chat"):
         }
         conversation_response = requests.post("https://tavusapi.com/v2/conversations", json=conversation_payload, headers=headers)
         conversation_data = conversation_response.json()
-        st.write(conversation_data)
         conversation_url = conversation_data.get("conversation_url")
-        st.write(conversation_url)
         if conversation_url:
             # 3. Embed the Video Chat
             st.header("Join the Conversation")

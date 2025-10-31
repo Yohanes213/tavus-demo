@@ -23,31 +23,29 @@ else:
             }
             
             conversation_payload = {
-                "replica_id": "rfe12d8b9597",  # Make sure this is a replica you want to use
-                "persona_id": BROADGATE_PERSONA_ID, # <-- Use the predefined ID
+                "replica_id": "rfe12d8b9597",
+                "persona_id": BROADGATE_PERSONA_ID,
                 "document_ids": [
                     "d8-39ab4b27436b"
                 ],
             }
             
             try:
-                st.write("g")
                 conversation_response = requests.post(
                     "https://tavusapi.com/v2/conversations", 
                     json=conversation_payload, 
                     headers=headers
                 )
-                conversation_response.raise_for_status()  # This will raise an error for bad responses (4xx or 5xx)
+                conversation_response.raise_for_status() 
                 conversation_data = conversation_response.json()
                 conversation_url = conversation_data.get("conversation_url")
 
                 if conversation_url:
-                    # Embed the Video Chat
                     st.header("Join the Conversation")
                     st.components.v1.iframe(conversation_url, height=600, scrolling=True)
                 else:
                     st.error("Could not retrieve the conversation URL. Please try again.")
-                    st.write("API Response:", conversation_data) # For debugging
+                    st.write("API Response:", conversation_data)
 
             except requests.exceptions.RequestException as e:
                 st.error(f"An API error occurred: {e}")

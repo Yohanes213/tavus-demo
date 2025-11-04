@@ -91,7 +91,7 @@ if st.button("📞 Start Call"):
                     height=0,
                 )
                 st.success("✅ Call started! Webhooks are enabled. Your conversation data will be automatically saved to Google Sheets.")
-                # st.info(f"📞 **Call URL:** {call_url}")
+                st.info(f"📞 **Call URL:** {call_url}")
                 # st.info(f"🆔 **Conversation ID:** {st.session_state['conversation_id']}")
             else:
                 st.warning("Conversation created but no call URL was returned.")
